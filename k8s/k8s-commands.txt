@@ -1,3 +1,5 @@
+Set-Alias -Name k -Value kubectl
+
 #https://kubernetes.io
 
 minikube start --driver=virtualbox
@@ -35,3 +37,59 @@ Invoke-WebRequest -OutFile 'c:\minikube\minikube.exe' -Uri 'https://github.com/k
 kubectl apply -f first-pod-definition.yml
 
 kubectl describe  prod <pod-name>myapp-pod
+
+# Generate yaml
+
+kubectl run redis --image=redis123 --dry-run=client -o yaml
+
+#################################################################
+Replica-set
+
+kubectl create -f .\rs-definition.yaml
+
+kubectl get replicaset
+
+kubectl delete pod vt-rs-nginx-57tmc
+
+kubectl edit replicaset <name>
+
+kubectl scale replicaset name --replicas=2
+
+kubectl scale --replicas=6 filename
+
+kubectl replace -f filename
+
+kubectl delete replicaset name
+
+#################################################################
+
+Deployments
+
+kubectl get all
+
+ kubectl describe deployment vt-deployment
+
+-------------------------------------------------
+
+Rollout & Versioning -- Upgrades -- 
+
+Create: kubectl create -f deployment-definition.yaml
+        
+        kubectl create -f .\deployments\deployment-def.yaml --record
+
+Get: kubectl get deployments
+
+Update: kubectl apply -f deployment-definition.yaml
+
+        kubectl set image deployment/myapp-deployment nginx-container=nginx:1.9.1 --record
+
+        kubectl edit deployment vt-dep --record
+
+? Status: kubectl rollout status deployment/vt-deployment
+    
+         kubectl rollout history deployment/myapp-deployment
+
+Rollback: kubectl rollout undo deployment/myapp-deployment
+
+Delete: kubectl delete deployment vt-deployment
+#################################################################

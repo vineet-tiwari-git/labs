@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: vt-dep
+  labels:
+    app: myapp
+    type: frontend
+spec:
+  selector:
+    matchLabels:
+      type: frontend
+  template:
+    metadata:
+      name: vt-nginx
+      labels:
+        type: frontend
+    spec:
+      containers:
+        - name: vt-nginx
+          image: nginx
+  replicas: 3
+    
