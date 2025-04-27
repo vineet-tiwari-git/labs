@@ -92,4 +92,15 @@ Update: kubectl apply -f deployment-definition.yaml
 Rollback: kubectl rollout undo deployment/myapp-deployment
 
 Delete: kubectl delete deployment vt-deployment
+
+#################################################################
+
+kubectl create -f services-definition-nodePort.yaml
+
+kubectl get services
+kubectl get svc
+
+kubectl describe service name
+
+minikube service vt-dep-service
 #################################################################
