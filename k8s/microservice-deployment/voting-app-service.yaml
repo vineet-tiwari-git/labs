@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: voting-app
+spec:
+  type: NodePort
+  ports:
+    - port: 8080
+      targetPort: 80
+      name: voter-service
+      nodePort: 31000
+  selector:
+    app: vt-voting-app
